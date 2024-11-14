@@ -12,6 +12,8 @@ jobs:
       with:
         ref: 2.1.0
     - uses: pguyot/arm-runner-action@v2
+    - name: Check architecture
+      run: uname -m
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -23,7 +25,7 @@ jobs:
         
     - name: Build wheel
       run: |
-        python setup.py bdist_wheel
+        python setup.py bdist_wheel --plat-name=linux_aarch64
         
     - name: Upload wheels
       uses: actions/upload-artifact@v4
